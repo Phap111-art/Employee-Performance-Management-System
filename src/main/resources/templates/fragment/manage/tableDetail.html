@@ -43,7 +43,7 @@
                             th:attr="data-bs-target='#edit-account'+${item.id}">
                         Edit
                     </button>
-                    <div th:replace="~{/fragment/modal/edit::edit-account(${'edit-account'+item.id},'Edit Account','/dashboard/manage/edit-account')}"></div>
+                    <div th:replace="~{fragment/modal/edit::edit-account(${'edit-account'+item.id},'Edit Account','/dashboard/manage/edit-account')}"></div>
                     |
                     <th:block th:switch="${item.status}">
                         <th:block th:case="1">
@@ -51,7 +51,7 @@
                                     th:attr="data-bs-target='#del-warning'+${item.id}">
                                 Del
                             </button>
-                            <div th:replace="~{/fragment/modal/del::del-warning(${'del-warning'+item.id},'Account')}"></div>
+                            <div th:replace="~{fragment/modal/del::del-warning(${'del-warning'+item.id},'Account')}"></div>
 
 
                         </th:block>
@@ -60,7 +60,7 @@
                                     th:attr="data-bs-target='#del-account'+${item.id}">
                                 Del
                             </button>
-                            <div th:replace="~{/fragment/modal/del::del-account(${'del-account'+item.id},'Del Account','/dashboard/manage/del-account')}"></div>
+                            <div th:replace="~{fragment/modal/del::del-account(${'del-account'+item.id},'Del Account','/dashboard/manage/del-account')}"></div>
                         </th:block>
                     </th:block>
 
@@ -95,7 +95,7 @@
                         th:attr="data-bs-target='#edit-department'+${item.id}">
                     Edit
                 </button>
-                <div th:replace="~{/fragment/modal/edit::edit-department(${'edit-department'+item.id},'Edit Department','/dashboard/manage/edit-department')}"></div>
+                <div th:replace="~{fragment/modal/edit::edit-department(${'edit-department'+item.id},'Edit Department','/dashboard/manage/edit-department')}"></div>
                 |
 
 
@@ -104,7 +104,7 @@
                             th:attr="data-bs-target='#del-warning'+${item.id}">
                         Del
                     </button>
-                    <div th:replace="~{/fragment/modal/del::del-warning(${'del-warning'+item.id},'Department')}"></div>
+                    <div th:replace="~{fragment/modal/del::del-warning(${'del-warning'+item.id},'Department')}"></div>
 
                 </th:block>
                 <th:block th:unless="${item.status == 1}">
@@ -112,7 +112,7 @@
                             th:attr="data-bs-target='#del-department'+${item.id}">
                         Del
                     </button>
-                    <div th:replace="~{/fragment/modal/del::del-department(${'del-department'+item.id},'Del Department','/dashboard/manage/del-department')}"></div>
+                    <div th:replace="~{fragment/modal/del::del-department(${'del-department'+item.id},'Del Department','/dashboard/manage/del-department')}"></div>
                 </th:block>
 
             </td>
@@ -153,7 +153,7 @@
                         th:attr="data-bs-target='#edit-employee'+${item.id}">
                     Edit
                 </button>
-                <div th:replace="~{/fragment/modal/edit::edit-employee(${'edit-employee'+item.id},'Edit Employee','/dashboard/manage/edit-employee')}"></div>
+                <div th:replace="~{fragment/modal/edit::edit-employee(${'edit-employee'+item.id},'Edit Employee','/dashboard/manage/edit-employee')}"></div>
                 |
 
                 <th:block th:if="${item.status == 1}">
@@ -161,7 +161,7 @@
                             th:attr="data-bs-target='#del-warning'+${item.id}">
                         Del
                     </button>
-                    <div th:replace="~{/fragment/modal/del::del-warning(${'del-warning'+item.id},'Employee')}"></div>
+                    <div th:replace="~{fragment/modal/del::del-warning(${'del-warning'+item.id},'Employee')}"></div>
 
                 </th:block>
                 <th:block th:unless="${item.status == 1}">
@@ -169,7 +169,7 @@
                             th:attr="data-bs-target='#del-employee'+${item.id}">
                         Del
                     </button>
-                    <div th:replace="~{/fragment/modal/del::del-employee(${'del-employee'+item.id},'Del Employee','/dashboard/manage/del-employee')}"></div>
+                    <div th:replace="~{fragment/modal/del::del-employee(${'del-employee'+item.id},'Del Employee','/dashboard/manage/del-employee')}"></div>
                 </th:block>
             </td>
             </th:block>
@@ -207,13 +207,13 @@
                         th:attr="data-bs-target='#edit-reward'+${item.id}">
                     Edit
                 </button>
-                <div th:replace="~{/fragment/modal/edit::edit-reward(${'edit-reward'+item.id},'Edit Reward','/dashboard/manage/edit-reward')}"></div>
+                <div th:replace="~{fragment/modal/edit::edit-reward(${'edit-reward'+item.id},'Edit Reward','/dashboard/manage/edit-reward')}"></div>
                 |
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                         th:attr="data-bs-target='#del-reward'+${item.id}">
                     Del
                 </button>
-                <div th:replace="~{/fragment/modal/del::del-reward(${'del-reward'+item.id},'Del Reward','/dashboard/manage/del-reward')}"></div>
+                <div th:replace="~{fragment/modal/del::del-reward(${'del-reward'+item.id},'Del Reward','/dashboard/manage/del-reward')}"></div>
 
             </td>
             </th:block>

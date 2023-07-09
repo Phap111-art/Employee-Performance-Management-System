@@ -101,6 +101,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <!--Mysql-->
         <dependency>
             <groupId>com.mysql</groupId>
@@ -146,6 +147,7 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -157,6 +159,7 @@
                    <finalName>management-employee</finalName>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

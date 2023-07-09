@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" >
-  <head th:replace="~{/fragment/layout/head::head}"> </head>
+  <head th:replace="~{fragment/layout/head::head}"> </head>
 
   <body class="fix-header fix-sidebar card-no-border">
 
@@ -21,14 +21,14 @@
       <!-- ============================================================== -->
       <!-- Topbar header - style you can find in pages.scss -->
       <!-- ============================================================== -->
-      <header th:replace="~{/fragment/layout/header::header}"></header>
+      <header th:replace="~{fragment/layout/header::header}"></header>
       <!-- ============================================================== -->
       <!-- End Topbar header -->
       <!-- ============================================================== -->
       <!-- ============================================================== -->
       <!-- Left Sidebar - style you can find in sidebar.scss  -->
       <!-- ============================================================== -->
-      <aside  th:replace="~{/fragment/layout/aside::aside}"></aside>
+      <aside  th:replace="~{fragment/layout/aside::aside}"></aside>
       <!-- ============================================================== -->
       <!-- End Left Sidebar - style you can find in sidebar.scss  -->
       <!-- ============================================================== -->
@@ -120,7 +120,7 @@
           <!-- ============================================================== -->
           <!-- Show top 10 Employee of Year-->
           <!-- ============================================================== -->
-          <div th:replace="~{/fragment/layout/top-10-employee::showTop10Employee}"></div>
+          <div th:replace="~{fragment/layout/top-10-employee::showTop10Employee}"></div>
 
 
           <!-- ============================================================== -->
@@ -303,7 +303,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <div  th:replace="~{/fragment/layout/footer::footer}"></div>
+    <div  th:replace="~{fragment/layout/footer::footer}"></div>
 
   </body>
 </html>

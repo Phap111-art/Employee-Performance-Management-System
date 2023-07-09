@@ -18,13 +18,13 @@
 
             <!-- Modal body -->
             <form th:action="@{${url}}" th:object="${USER}" method="post">
-                <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
 
                 <div class="modal-body">
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('FullName','fullName','text')}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('Email','email','email')}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('Username','username','text')}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('Password','password','password')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('FullName','fullName','text')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('Email','email','email')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('Username','username','text')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('Password','password','password')}"/>
 
                     <div class="row">
                         <label class="form-label">Role:</label>
@@ -73,7 +73,7 @@
 
             <!-- Modal body -->
             <form th:action="@{${url}}" th:object="${USER}" method="post">
-                <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
 
                 <div class="modal-body">
                     <div class="mb-3 mt-3">
@@ -81,9 +81,9 @@
                         <input   pattern="^PB.{0,}$" title="Must enter ID with 2 first characters are 'PB'"
                                  th:field="*{id}" type="text" class="form-control" placeholder="Enter Code" required>
                     </div>
-                    <input  pattern="^PB.{0,}$" title="Must enter ID with 2 first characters are 'PB'" th:replace="~{/fragment/input/inputFiled::inputAdd('Deparment code','id','text')}"/>
+                    <input  pattern="^PB.{0,}$" title="Must enter ID with 2 first characters are 'PB'" th:replace="~{fragment/input/inputFiled::inputAdd('Deparment code','id','text')}"/>
                     <!--label,field,type-->
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('Department Name','name','text')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('Department Name','name','text')}"/>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 <!-- Modal footer -->
@@ -107,14 +107,14 @@
 
             <!-- Modal body -->
             <form th:action="@{${url}}" th:object="${USER}" method="post" enctype="multipart/form-data">
-                <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                 <div class="modal-body">
                     <div class="mb-3 mt-3">
                         <label class="form-label"> Emp Id</label>
                         <input   pattern="^NV.{0,}$" title="Must enter ID with 2 first characters are 'NV'"
                                  th:field="*{id}" type="text" class="form-control" placeholder="Emp Id" required>
                     </div>
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('Emp Name','name','text')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('Emp Name','name','text')}"/>
                     <div class="row">
                         <div class="col">
 
@@ -163,9 +163,9 @@
                         <div class="col-8">
                         </div>
                     </div>
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('Birthday','date','date')}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('Phone No','phone','text')}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputAdd('Salary','salary','tel')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('Birthday','date','date')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('Phone No','phone','text')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputAdd('Salary','salary','tel')}"/>
                     <div class="form-group">
                         <label for="comment">Comment:</label>
                         <textarea class="form-control" th:field="*{note}" rows="5" id="comment"></textarea>
@@ -194,7 +194,7 @@
 
             <!-- Modal body -->
             <form th:action="@{${url}}" th:object="${USER}" method="post">
-                <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
 
                 <div class="modal-body">
                     <div class="mb-3 mt-3">

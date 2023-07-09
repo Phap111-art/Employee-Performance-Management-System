@@ -69,7 +69,7 @@
                 <div class="card-body">
                     <!--Alert Success-->
                     <th:block th:if="${edit_success != null}">
-                        <script th:replace="~{/fragment/alert/alert::updateProfile-success}"></script>
+                        <script th:replace="~{fragment/alert/alert::updateProfile-success}"></script>
                     </th:block>
                     <!--Alert Error-->
                     <div th:if="${error != null}" th:text="${error}" class="alert alert-danger" role="alert">
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <!--Phone Emp-->
-                        <input  pattern="[0-9]{1,10}" title="must not exceed 10 digits" th:replace="~{/fragment/input/inputFiled::inputProfile('Phone No','phone','text')}"/>
+                        <input  pattern="[0-9]{1,10}" title="must not exceed 10 digits" th:replace="~{fragment/input/inputFiled::inputProfile('Phone No','phone','text')}"/>
                         <!--Birthday Emp-->
                         <div class="form-group">
                             <label class="col-md-12">Birthday</label>

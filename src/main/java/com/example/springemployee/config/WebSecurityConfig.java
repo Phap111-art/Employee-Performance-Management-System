@@ -53,7 +53,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/login","/login/*","/dashboard/home","/oauth2/**","/register","/save").permitAll()
+                .requestMatchers("/login","/login/*","/view","/dashboard/home","/oauth2/**","/register","/save").permitAll()
                 .anyRequest().authenticated() // chỉ được admin hoặc normal mới truy cập được page này
                 .and()
                 .formLogin().loginPage("/login")

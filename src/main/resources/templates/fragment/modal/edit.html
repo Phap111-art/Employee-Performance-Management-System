@@ -13,12 +13,12 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <form th:action="@{${url}}" method="post">
-                    <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                    <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                     <input type="hidden" name="id" th:value="${item.id}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputEdit('FullName','fullName',${item.fullName},'text')}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputEdit('Email','email',${item.email},'email')}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputEdit('Username','username',${item.username},'text')}"/>
-                    <input th:replace="~{/fragment/input/inputFiled::inputEdit('Password','password',${item.password},'password')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputEdit('FullName','fullName',${item.fullName},'text')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputEdit('Email','email',${item.email},'email')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputEdit('Username','username',${item.username},'text')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputEdit('Password','password',${item.password},'password')}"/>
 
                     <!--Auto tick role for id account-->
                     <label class="form-label">Role :</label>
@@ -128,13 +128,13 @@
 
                 <form th:action="@{${url}}" method="post">
                     <input type="hidden" name="id" th:value="${item.id}" >
-                    <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                    <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                     <div class="mb-3 mt-3">
                         <label class="form-label">Department code</label>
                         <input name="id" th:value="${item.id}" th:type="text" class="form-control"
                                placeholder="Enter Id" disabled>
                     </div>
-                    <input th:replace="~{/fragment/input/inputFiled::inputEdit('Department name','name',${item.name},'text')}"/>
+                    <input th:replace="~{fragment/input/inputFiled::inputEdit('Department name','name',${item.name},'text')}"/>
                     <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -164,13 +164,13 @@
 
                 <form th:action="@{${url}}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" th:value="${item.id}" >
-                    <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                    <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                     <div class="modal-body">
                         <div class="mb-3 mt-3">
                             <label class="form-label">Emp Code</label>
                             <input type="text" class="form-control" name="id" id="id" th:value="${item.id}" disabled>
                         </div>
-                        <input th:replace="~{/fragment/input/inputFiled::inputEdit('Emp Name','Name',${item.name},'text')}"/>
+                        <input th:replace="~{fragment/input/inputFiled::inputEdit('Emp Name','Name',${item.name},'text')}"/>
                         <div class="row">
                             <div class="col">
                                 <select disabled name="account_id" class="form-select"
@@ -255,8 +255,8 @@
                             <label class="form-label" >Birthday :</label>
                             <input  name="date" th:value="${#dates.format(item.birthday, 'yyyy-MM-dd')}" type="date" class="form-control"  placeholder="Enter Date" required>
                         </div>
-                        <input th:replace="~{/fragment/input/inputFiled::inputEdit('Phone No','phone',${item.phone},'text')}"/>
-                        <input th:replace="~{/fragment/input/inputFiled::inputEdit('Salary','salary',${item.salary},'tel')}"/>
+                        <input th:replace="~{fragment/input/inputFiled::inputEdit('Phone No','phone',${item.phone},'text')}"/>
+                        <input th:replace="~{fragment/input/inputFiled::inputEdit('Salary','salary',${item.salary},'tel')}"/>
                         <div class="form-group">
                             <label for="comment">Comment:</label>
                             <textarea name="note" th:placeholder="${item.note}" class="form-control" rows="5"
@@ -288,7 +288,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <form th:action="@{${url}}" method="post">
-                    <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                    <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                     <input type="hidden" name="id" th:value="${item.id}"/>
 
                     <div class="mb-3 mt-3">

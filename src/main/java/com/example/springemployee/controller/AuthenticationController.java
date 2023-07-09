@@ -119,9 +119,14 @@ public class AuthenticationController {
     public String notFound() {
         return "403.html";
     }
-
+    @GetMapping("/view")
+    public String view(Model model) {
+        model.addAttribute("a","xin chao");
+        return "test/view";
+    }
     @ModelAttribute("USER")
     public AccountDTO init() {
         return new AccountDTO();
     }
+
 }

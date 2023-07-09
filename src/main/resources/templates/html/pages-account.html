@@ -21,21 +21,21 @@
       <br>
       <!-- Button to Open the Modal -->
       <th:block th:if="${add_success != null}">
-        <script th:replace="~{/fragment/alert/alert::add-success}"></script>
+        <script th:replace="~{fragment/alert/alert::add-success}"></script>
       </th:block>
       <th:block th:if="${edit_success != null}">
-        <script th:replace="~{/fragment/alert/alert::edit-success}"></script>
+        <script th:replace="~{fragment/alert/alert::edit-success}"></script>
       </th:block>
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-account">
         Add Account
       </button>
-      <th:block th:replace="~{/fragment/modal/add::add-account('modal-account','Add Account','/dashboard/manage/add-account')}"></th:block>
+      <th:block th:replace="~{fragment/modal/add::add-account('modal-account','Add Account','/dashboard/manage/add-account')}"></th:block>
 
     </div>
     <div class="col-md-3 align-self-center">
-      <th:block th:replace="~{/fragment/manage/search::search('/dashboard/manage/pages-account','search')}"></th:block>
+      <th:block th:replace="~{fragment/manage/search::search('/dashboard/manage/pages-account','search')}"></th:block>
       <br>
-      <th:block th:replace="~{/fragment/manage/pageSize::pageSize('/dashboard/manage/pages-account','size')}"></th:block>
+      <th:block th:replace="~{fragment/manage/pageSize::pageSize('/dashboard/manage/pages-account','size')}"></th:block>
     </div>
   </div>
   <!-- ============================================================== -->
@@ -55,12 +55,12 @@
           </div>
 
           <div class="table">
-            <th:block th:replace="~{/fragment/manage/tableDetail::tableAccount(${list})}"></th:block>
+            <th:block th:replace="~{fragment/manage/tableDetail::tableAccount(${list})}"></th:block>
           </div>
 
         </div>
         <div class="card-footer text-muted">
-          <div th:replace="~{/fragment/manage/pagination::pagination('/dashboard/manage/pages-account')}"></div>
+          <div th:replace="~{fragment/manage/pagination::pagination('/dashboard/manage/pages-account')}"></div>
         </div>
 
       </div>

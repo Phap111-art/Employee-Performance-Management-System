@@ -18,7 +18,7 @@
 
             <!-- Modal body -->
             <form th:action="@{${url}}" method="get">
-                <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                 <input type="hidden" name="id" th:value="${item.id}"/>
                 <div class="modal-body">
                     <p th:text="${'Are you want to delete  ' + item.fullName + ' ?'}"></p>
@@ -46,7 +46,7 @@
 
             <!-- Modal body -->
             <form th:action="@{${url}}" method="get">
-                <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                 <input type="hidden" name="id" th:value="${item.id}"/>
                 <div class="modal-body">
                     <p th:text="${'Are you want to delete ' + item.name + ' ?'}"></p>
@@ -74,7 +74,7 @@
 
             <!-- Modal body -->
             <form th:action="@{${url}}" method="get">
-                <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                 <input type="hidden" name="id" th:value="${item.id}"/>
                 <div class="modal-body">
                     <p th:text="${'Are you want to delete ' + item.name + ' ?'}"></p>
@@ -102,7 +102,7 @@
 
             <!-- Modal body -->
             <form th:action="@{${url}}" method="get">
-                <div th:replace="~{/fragment/input/inputHidden::inputHidden}"></div>
+                <div th:replace="~{fragment/input/inputHidden::inputHidden}"></div>
                 <input type="hidden" name="id" th:value="${item.id}"/>
                 <div class="modal-body">
                     <p th:text="${'Are you want to delete ' + item.employee.name + ' ?'}"></p>
