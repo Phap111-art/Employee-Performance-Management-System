@@ -42,6 +42,7 @@ public class FileSystemStorageService implements StorageService {
             generatedFileName = generatedFileName + "." + fileExtension;
             Files.copy(file.getInputStream(),this.rootLocation.resolve(generatedFileName).normalize().toAbsolutePath(),
                     StandardCopyOption.REPLACE_EXISTING);
+            deleteAllWithoutExtension();
             return generatedFileName;
         } catch (IOException e) {
             throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
@@ -100,6 +101,20 @@ public class FileSystemStorageService implements StorageService {
     @Override
     public void deleteAll() {
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
+    }
+
+    @Override
+    public void deleteAllWithoutExtension() {
+        File folder = new File("upload/");
+        File[] files = folder.listFiles();
+        for (File file : files) {
+            if (file.isFile()) {
+                String fileExtension = FilenameUtils.getExtension(file.getName());
+                if (!Arrays.asList("jpg", "png", "jpeg", "pdf", "bmp").contains(fileExtension.toLowerCase())) {
+                    file.delete();
+                }
+            }
+        }
     }
 
     @Override

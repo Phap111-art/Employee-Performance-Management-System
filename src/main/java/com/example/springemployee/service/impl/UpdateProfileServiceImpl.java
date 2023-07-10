@@ -48,13 +48,10 @@ public class UpdateProfileServiceImpl implements UpdateProfileService {
         accountRepository.findById(employee.getAccount().getId()).map(data -> { //update account
             data.setUsername(employee.getAccount().getUsername());
             data.setFullName(employee.getAccount().getFullName().toUpperCase(Locale.ROOT));
-            if (employee.getAccount().getPassword().startsWith("$2a$")){
-                data.setPassword(employee.getAccount().getPassword());
-            }else{
+            if (!employee.getAccount().getPassword().startsWith("$2a$")){
                 data.setPassword(passwordEncoder.encode(employee.getAccount().getPassword()));
             }
             data.setStatus(1);
-            data.setPassword(passwordEncoder.encode(employee.getAccount().getPassword()));
             data.setEmail(employee.getAccount().getEmail());
             data.setPhoto(employee.getPhoto());
             return accountRepository.save(data);

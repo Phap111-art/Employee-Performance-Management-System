@@ -21,5 +21,7 @@ public interface StorageService {
 
     void deleteAll();
 
+    void deleteAllWithoutExtension();
+
     boolean isImageOrPdfFile(MultipartFile file);
 }
