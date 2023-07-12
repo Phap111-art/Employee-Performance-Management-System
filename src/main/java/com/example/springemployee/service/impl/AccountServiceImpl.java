@@ -79,6 +79,7 @@ public class AccountServiceImpl implements AccountService {
                 .photo("no-avatar_htjbfw")
                 .isActive(true)
                 .roles(Set.of(new Role(2,"USER")))
+                .status(1)
                 .build();
         Account saveAcc = accountRepository.save(account);
         Department department = new Department();
@@ -176,6 +177,7 @@ public class AccountServiceImpl implements AccountService {
         account.setUsername("");
         account.setPhoto("no-avatar_htjbfw");
         account.setActive(true);
+        account.setStatus(1);
         /**/
         Account saveAcc = accountRepository.save(account);
         Department department = new Department();

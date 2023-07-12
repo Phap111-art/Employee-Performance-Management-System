@@ -121,11 +121,10 @@ public class EmployeeController {
         }
         if (employee.getFile() != null && !employee.getFile().isEmpty()) {
             /*remove publicId old*/
-            Account account = accountService.findByIdAccount(employee.getAccount_id());
+            Employee fileNameOld = employeeService.findByIdEmployee(employee.getId());
             // no delete default avatar
-            if (account.getPhoto() != "no-avatar_htjbfw"  && !account.getPhoto().equals("no-avatar_htjbfw")){
-                String fileName = employeeService.findByIdEmployee(employee.getId()).getPhoto();
-                cloudinary.uploader().destroy("avatar-employee/" + fileName, ObjectUtils.emptyMap());
+            if (fileNameOld.getPhoto() != "no-avatar_htjbfw"  && !fileNameOld.getPhoto().equals("no-avatar_htjbfw")){
+                cloudinary.uploader().destroy("avatar-employee/" + fileNameOld.getPhoto(), ObjectUtils.emptyMap());
             }
             /*remove publicId old*/
             employee.setPhoto(storageService.uploadFileToCloudinary(employee.getFile()));
