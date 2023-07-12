@@ -121,7 +121,7 @@ public class EmployeeController {
         }
         if (employee.getFile() != null && !employee.getFile().isEmpty()) {
             /*remove publicId old*/
-            Account account = accountService.findByIdAccount(employee.getAccount().getId());
+            Account account = accountService.findByIdAccount(employee.getAccount_id());
             // no delete default avatar
             if (account.getPhoto() != "no-avatar_htjbfw"  && !account.getPhoto().equals("no-avatar_htjbfw")){
                 String fileName = employeeService.findByIdEmployee(employee.getId()).getPhoto();
