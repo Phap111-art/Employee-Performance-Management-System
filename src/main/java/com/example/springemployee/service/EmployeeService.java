@@ -13,6 +13,7 @@ public interface EmployeeService {
     void updateStatusDepartment(String id,int status);
     void updateStatusAccount(int id, int status);
     void updateStatusEmployee(String id, int status);
+    void deleteFilesNotInDatabaseFromCloudinary() throws Exception;
     List<Employee> getAllEmployee();
     List<Employee> getAllEmployeeByName(String name);
     List<Employee> getAllEmployeeById(String id);

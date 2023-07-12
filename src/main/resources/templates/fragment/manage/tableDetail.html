@@ -142,7 +142,7 @@
             <th:block th:if="${item.account.username != 'dinhphap'}">
             <td></td>
             <td><img width="50px" height="60px" class="rounded-circle"
-                     th:src="@{'/display/image/storage/' + ${item.photo} }"></td>
+                     th:src="@{'/display/image/cloudinary/' + ${item.photo} }"></td>
             <td th:text="${item.name}"></td>
             <td th:text="${#dates.format(item.birthday, 'dd-MM-yyyy')}"></td>
             <td th:text="${item.gender ? 'Male' : 'Female'}"></td>

@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -37,18 +38,18 @@ public class EmployeeControllerApi {
     @PostMapping("/save")
     public ResponseEntity<ResponseObject> saveEmployee(@RequestParam("file") MultipartFile file,
 
-                                                       String jsonData) throws JsonProcessingException {
+                                                       String jsonData) throws IOException {
         Employee employee = new ObjectMapper().readValue(jsonData, Employee.class);
         employee.setFile(file);
         employee.setBirthday(DateUtils.getInstance().getStringToDate(employee.getDate()));
 
         logger.info("date : " + employee.getDate());
         if (employee.getFile() != null) {
-            employee.setPhoto(storageService.storeAdd(employee.getFile()));
+            employee.setPhoto(storageService.uploadFileToCloudinary(employee.getFile()));
             logger.info("data " + employee.getPhoto());
         }
         if (employee.getFile().isEmpty() || employee.getFile() == null) {
-            employee.setPhoto("no_avatar.jpg");
+            employee.setPhoto("no-avatar_htjbfw");
             logger.info("update file " + employee.getPhoto());
         }
         List<Employee> isId = employeeService.getAllEmployeeById(employee.getId());
@@ -103,6 +104,22 @@ public class EmployeeControllerApi {
                 new ResponseObject("account id not found " + id, false, "")
         );
     }
+    @GetMapping("/uploadToCloudinary")
+    public ResponseEntity<ResponseObject> uploadToCloudinary(@RequestParam MultipartFile file) {
+        try {
+
+            String uploadCD = storageService.uploadFileToCloudinary(file);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject(" Upload Successfully  " , true, uploadCD)
+            );
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("Upload false" + e, false, e)
+            );
+        }
+    }
+
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ResponseObject> deleteByIdEmployee(@PathVariable("id") String id) {

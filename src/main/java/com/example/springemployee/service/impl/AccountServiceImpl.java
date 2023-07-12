@@ -2,6 +2,8 @@ package com.example.springemployee.service.impl;
 
 import com.example.springemployee.dto.AccountDTO;
 import com.example.springemployee.entity.Account;
+import com.example.springemployee.entity.Department;
+import com.example.springemployee.entity.Employee;
 import com.example.springemployee.entity.Role;
 import com.example.springemployee.exception.DataNotFound;
 
@@ -18,10 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,15 +74,36 @@ public class AccountServiceImpl implements AccountService {
         Account account = Account.builder()
                 .username(accountDTO.getUsername())
                 .email(accountDTO.getEmail())
-                .fullName("")
+                .fullName(accountDTO.getFullName().toUpperCase(Locale.ROOT))
                 .password(passwordEncoder.encode(accountDTO.getPassword()))
-                .photo("no_avatar.jpg")
+                .photo("no-avatar_htjbfw")
                 .isActive(true)
                 .roles(Set.of(new Role(2,"USER")))
                 .build();
-        return accountMp.toDto(accountRepository.save(account));
+        Account saveAcc = accountRepository.save(account);
+        Department department = new Department();
+        department.setId("PB01");
+        Employee employee = Employee.builder()
+                .id(getRandomIdEmployee())
+                .photo(account.getPhoto())
+                .name(saveAcc.getFullName())
+                .account(saveAcc)
+                .department(department).build();
+        employeeRepository.save(employee);
+        return accountMp.toDto(saveAcc);
     }
-
+    String getRandomIdEmployee() {
+        Random random = new Random();
+        int num = random.nextInt(90) + 10;
+        Employee idEmp = employeeRepository.getByIdEmployee("NV" + num);
+        while (idEmp != null) {
+            num = random.nextInt(90) + 10;
+            if (idEmp == null) {
+                break;
+            }
+        }
+        return "NV" + num;
+    }
     @Override
     public Account updateOrInsertAccount(Account account) {
         return accountRepository.findById(account.getId()).map(data -> {
@@ -154,8 +174,19 @@ public class AccountServiceImpl implements AccountService {
         account.setRoles(roles);
         account.setPassword("");
         account.setUsername("");
-        account.setPhoto("no_avatar.jpg");
+        account.setPhoto("no-avatar_htjbfw");
         account.setActive(true);
+        /**/
+        Account saveAcc = accountRepository.save(account);
+        Department department = new Department();
+        department.setId("PB01");
+        Employee employee = Employee.builder()
+                .id(getRandomIdEmployee())
+                .photo(account.getPhoto())
+                .name(saveAcc.getFullName())
+                .account(saveAcc)
+                .department(department).build();
+        employeeRepository.save(employee);
         accountRepository.save(account);
     }
 

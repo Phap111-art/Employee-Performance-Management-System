@@ -1,5 +1,7 @@
 package com.example.springemployee.controller;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.example.springemployee.entity.Account;
 import com.example.springemployee.entity.Department;
 import com.example.springemployee.entity.Employee;
@@ -11,12 +13,14 @@ import com.example.springemployee.service.StorageService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +28,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/dashboard/manage")
 public class EmployeeController {
+    @Autowired
+    private Cloudinary cloudinary;
     private final EmployeeService employeeService;
     private final AccountService accountService;
     private final DepartmentService departmentService;
@@ -59,7 +65,7 @@ public class EmployeeController {
                                      @RequestParam(defaultValue = "5") int size,
                                      @RequestParam(defaultValue = "") String search,
                                      Model model) {
-        model.addAttribute("getAccountListDoesNotExitsInTheEmployee",accountService.getAllAccountDoNotExistInTheListOfEmployee());
+        model.addAttribute("getAccountListDoesNotExitsInTheEmployee", accountService.getAllAccountDoNotExistInTheListOfEmployee());
         model.addAttribute("pageCurrent", pageCurrent);
         model.addAttribute("size", size);
         model.addAttribute("search", search);
@@ -79,17 +85,16 @@ public class EmployeeController {
     public String addEmployee(@RequestParam int pageCurrent,
                               @RequestParam int size,
                               @RequestParam String search,
-                              @Valid Employee employee, BindingResult result, Model model) {
+                              @Valid Employee employee, BindingResult result, Model model) throws IOException {
         employee.setBirthday(DateUtils.getInstance().getStringToDate(employee.getDate()));
         String messError = messageAllErrorAdd(result, employee, pageCurrent, size, search, model);
         if (!messError.isEmpty()) {
             return messError;
         }
-        if (employee.getFile() != null) {
-            employee.setPhoto(storageService.storeAdd(employee.getFile()));
-        }
-        if (employee.getFile().isEmpty() || employee.getFile() == null) {
-            employee.setPhoto("no_avatar.jpg");
+        if (employee.getFile() != null && !employee.getFile().isEmpty()) {
+            employee.setPhoto(storageService.uploadFileToCloudinary(employee.getFile()));
+        }else{
+            employee.setPhoto("no-avatar_htjbfw");
         }
         if (messError.isEmpty()) {
             model.addAttribute("add_success", "Add Success!");
@@ -104,7 +109,7 @@ public class EmployeeController {
     public String editEmployee(@RequestParam int pageCurrent,
                                @RequestParam int size,
                                @RequestParam String search,
-                               @Valid Employee employee, BindingResult result, Model model) {
+                               @Valid Employee employee, BindingResult result, Model model) throws IOException {
 
         employee.setBirthday(DateUtils.getInstance().getStringToDate(employee.getDate()));
         String messError = messageAllErrorEdit(result, employee, pageCurrent, size, search, model);
@@ -114,10 +119,17 @@ public class EmployeeController {
         if (messError.isEmpty()) {
             model.addAttribute("edit_success", "Edit Success!");
         }
-        if (employee.getFile() != null) {
-            employee.setPhoto(storageService.storeAdd(employee.getFile()));
-        }
-        if (employee.getFile().isEmpty() || employee.getFile() == null) {
+        if (employee.getFile() != null && !employee.getFile().isEmpty()) {
+            /*remove publicId old*/
+            Account account = accountService.findByIdAccount(employee.getAccount().getId());
+            // no delete default avatar
+            if (account.getPhoto() != "no-avatar_htjbfw"  && !account.getPhoto().equals("no-avatar_htjbfw")){
+                String fileName = employeeService.findByIdEmployee(employee.getId()).getPhoto();
+                cloudinary.uploader().destroy("avatar-employee/" + fileName, ObjectUtils.emptyMap());
+            }
+            /*remove publicId old*/
+            employee.setPhoto(storageService.uploadFileToCloudinary(employee.getFile()));
+        } else {
             Employee updateFile = employeeService.findByIdEmployee(employee.getId());
             employee.setPhoto(updateFile.getPhoto());
         }

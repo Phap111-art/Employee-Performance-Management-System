@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:cl="http://cloudinary.com/xmlns/cloudinary">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -92,7 +92,7 @@
                     <li class="dropdown dropdown-menu-end">
                         <button type="button" class="waves-effect waves-dark
                     profile-pic btn border-0 btn-btn-default dropdown-toggle user-action" data-bs-toggle="dropdown">
-                            <img th:src="@{'/display/image/storage/' +${session.ACCOUNT.photo}}" class="rounded-circle" alt="Avatar">
+                            <img th:src="@{'/display/image/cloudinary/' +${session.ACCOUNT.photo}}" class="rounded-circle" alt="Avatar">
                             <span class=" fw-normal fs-6"th:text="${session.ACCOUNT.fullName}">
                             </span>  <i class="fa fa-caret-down" aria-hidden="true"></i>
                         </button>

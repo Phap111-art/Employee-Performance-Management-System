@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Objects;
 
 @RestController
@@ -51,13 +52,14 @@ public class ProfileControllerApi {
 
     @PutMapping("/update-profile")
     public ResponseEntity<ResponseObject> updateOrInsertEmployee(@RequestParam MultipartFile file,
-                                                                 String jsonData) throws JsonProcessingException {
+                                                                 String jsonData) throws IOException {
         Employee employee = new ObjectMapper().readValue(jsonData, Employee.class);
         employee.setFile(file);
         employee.setBirthday(DateUtils.getInstance().getStringToDate(employee.getDate()));
         logger.info("date : " + employee.getDate());
         if (employee.getFile() != null) {
-            employee.setPhoto(storageService.storeAdd(employee.getFile()));
+//            employee.setPhoto(storageService.storeAdd(employee.getFile()));
+            employee.setPhoto(storageService.uploadFileToCloudinary(employee.getFile()));
             logger.info("data " + employee.getPhoto());
         }
         if (employee.getFile().isEmpty() || employee.getFile() == null) {

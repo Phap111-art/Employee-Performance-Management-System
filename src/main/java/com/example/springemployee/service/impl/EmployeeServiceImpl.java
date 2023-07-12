@@ -1,5 +1,11 @@
 package com.example.springemployee.service.impl;
 
+import com.cloudinary.Cloudinary;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+import com.cloudinary.utils.ObjectUtils;
 import com.example.springemployee.entity.Account;
 import com.example.springemployee.entity.Department;
 import com.example.springemployee.entity.Employee;
@@ -8,17 +14,17 @@ import com.example.springemployee.repositories.AccountRepository;
 import com.example.springemployee.repositories.DepartmentRepository;
 import com.example.springemployee.repositories.EmployeeRepository;
 import com.example.springemployee.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Locale;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-
+    @Autowired
+    private Cloudinary cloudinary;
     private final EmployeeRepository employeeRepository;
     private final AccountRepository accountRepository;
     private final DepartmentRepository departmentRepository;
@@ -104,6 +110,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeRepository.findById(id).orElseThrow(DataNotFound::new);
         employee.setStatus(status);
         employeeRepository.save(employee);
+    }
+
+    @Override
+    public void deleteFilesNotInDatabaseFromCloudinary() throws Exception {
+
     }
 
     @Override

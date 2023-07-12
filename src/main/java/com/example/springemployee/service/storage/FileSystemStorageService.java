@@ -1,8 +1,11 @@
 package com.example.springemployee.service.storage;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.example.springemployee.service.StorageService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.mock.web.MockMultipartFile;
@@ -18,15 +21,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Service
 public class FileSystemStorageService implements StorageService {
 
-    private final Path rootLocation = Paths.get("upload/");
+    @Autowired
+    private Cloudinary cloudinary;
+    private final Path rootLocation = Paths.get("src/main/resources/static/upload/");
 
     @Override
     public String storeAdd(MultipartFile file) {
@@ -132,4 +135,17 @@ public class FileSystemStorageService implements StorageService {
             throw new StorageException("Could not initialize storage", e);
         }
     }
+
+    @Override
+    public String uploadFileToCloudinary(MultipartFile file) throws IOException{
+        Map<String, Object> params = new HashMap<>();
+        params.put("folder", "avatar-employee");
+        Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(), params);
+        String publicId = (String) uploadResult.get("public_id");
+        String[] publicIdParts = publicId.split("/");
+        String result = publicIdParts[publicIdParts.length - 1];
+        return result;
+    }
+
+
 }

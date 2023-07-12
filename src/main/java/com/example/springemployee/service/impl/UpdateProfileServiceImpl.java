@@ -1,5 +1,7 @@
 package com.example.springemployee.service.impl;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.example.springemployee.entity.Department;
 import com.example.springemployee.entity.Employee;
 import com.example.springemployee.exception.DataNotFound;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Random;
 
@@ -27,7 +30,6 @@ public class UpdateProfileServiceImpl implements UpdateProfileService {
 
     @Override
     public Employee updateProfileEmployee(Employee employee) {
-
         Employee update = employeeRepository.findById(employee.getId()).map(data -> { // update emp
             data.setId(data.getId().toUpperCase(Locale.ROOT));
             data.setName(employee.getAccount().getFullName().toUpperCase(Locale.ROOT));
